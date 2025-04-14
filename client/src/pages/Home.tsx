@@ -190,7 +190,7 @@ const Home = () => {
 
 
 
-      {/* Your All-in-One SEO Toolkit */}
+      {/* Analysis Features */}
       <section 
         ref={sectionRefs.toolkit} 
         className="py-16 bg-gradient-to-b from-white to-gray-50 relative z-10"
@@ -199,42 +199,68 @@ const Home = () => {
           visibleSections.toolkit ? "opacity-100" : "opacity-0 translate-y-10"
         }`}>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Your All-in-One SEO Toolkit</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Comprehensive tools to analyze and optimize every aspect of your website's search engine performance.</p>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Comprehensive Analysis Features</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Click on each feature to learn more about what we analyze during your website scan.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-4 max-w-3xl mx-auto">
             {[
               {
-                title: "Metadata Checker",
-                description: "Audit titles, descriptions, and keyword usage for maximum SERP impact."
+                title: "Technical SEO Analysis",
+                icon: "ri-code-line",
+                description: "In-depth scanning of your website's technical foundation including load speed, mobile responsiveness, and SSL security status.",
+                items: ["Page Load Speed", "Mobile Optimization", "SSL Certificate", "Robots.txt", "XML Sitemap"]
               },
               {
-                title: "Page Speed Optimization",
-                description: "Pinpoint performance bottlenecks and keep visitors (and search engines) happy."
+                title: "Content & Meta Analysis",
+                icon: "ri-article-line",
+                description: "Comprehensive review of your content structure and meta information for search engine optimization.",
+                items: ["Meta Titles & Descriptions", "Heading Structure", "Keyword Density", "Content Quality", "Image Alt Tags"]
               },
               {
-                title: "Mobile-Friendliness",
-                description: "Ensure your website is fully responsive and meets Google's mobile-first criteria."
+                title: "User Experience Checks",
+                icon: "ri-user-smile-line",
+                description: "Evaluation of factors that impact visitor engagement and satisfaction.",
+                items: ["Mobile Friendliness", "Navigation Structure", "Page Load Time", "Interactive Elements", "Viewport Configuration"]
               },
               {
-                title: "Security & SSL Monitoring",
-                description: "Build trust by confirming your site is secure and properly certified."
+                title: "Link Structure Analysis",
+                icon: "ri-links-line",
+                description: "Assessment of internal and external link profile for optimal site structure.",
+                items: ["Internal Links", "External Links", "Broken Links", "Anchor Text", "URL Structure"]
               },
               {
-                title: "Backlink Insights",
-                description: "Track inbound links and discover areas to strengthen your site building strategy."
-              },
-              {
-                title: "Content Optimization",
-                description: "Analyze your content for readability, keyword usage, and engagement potential."
-              },
-              {
-                title: "+ More Features",
-                description: "Discover additional checks running in the background, including schema markup, Core Web Vitals, and more.",
-                isMoreCard: true
+                title: "Performance Metrics",
+                icon: "ri-speed-line",
+                description: "Analysis of core web vitals and performance indicators crucial for SEO.",
+                items: ["Core Web Vitals", "Server Response Time", "TTFB", "Resource Optimization", "Caching Status"]
               }
-            ].map((tool, index) => (
+            ].map((feature, index) => (
+              <Collapsible
+                key={index}
+                className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+              >
+                <CollapsibleTrigger className="w-full p-4 flex items-center justify-between text-left">
+                  <div className="flex items-center space-x-3">
+                    <i className={`${feature.icon} text-xl text-primary`}></i>
+                    <h3 className="text-lg font-semibold text-gray-800">{feature.title}</h3>
+                  </div>
+                  <i className="ri-arrow-down-s-line text-xl text-gray-400 transition-transform group-data-[state=open]:rotate-180"></i>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="px-4 pb-4">
+                  <p className="text-gray-600 mb-3">{feature.description}</p>
+                  <ul className="grid grid-cols-2 gap-2">
+                    {feature.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="flex items-center text-sm text-gray-600">
+                        <i className="ri-checkbox-circle-line text-primary mr-2"></i>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </CollapsibleContent>
+              </Collapsible>
+            ))}
+          </div>
               <div 
                 key={index}
                 className={`rounded-xl border ${tool.isMoreCard ? 'border-primary/30 bg-primary/5' : 'border-gray-200 bg-white'} p-6 hover:border-primary hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group`}
