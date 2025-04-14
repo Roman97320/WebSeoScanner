@@ -1,0 +1,136 @@
+Product Name: Webpage SEO & Code Analyzer
+
+1. Overview
+The Webpage SEO & Code Analyzer is a web-based application that allows users to input a website URL and receive a comprehensive SEO audit report. By fetching the underlying HTML (“the part you see when clicking on ‘Inspect’”) and analyzing key SEO and technical elements, the application generates actionable insights for improving search visibility, user experience, and overall website performance.
+
+2. Key Objectives & Goals
+Provide a Comprehensive SEO Audit: Assess essential on-page and technical SEO elements such as title tags, meta descriptions, canonical tags, structured data, and more.
+
+Deliver a Visual, Foldable Report: Present findings in a compact, collapsible format so users can easily navigate or expand sections of interest.
+
+Generate an Overall Performance Score: Each SEO element is scored from 1 to 100, then weighted according to its importance level. These weighted scores are combined into a final overall score from 0–100, visually displayed using a color gradient from red (0) to green (100).
+
+Offer Executive Summary & Recommendations: Include a concise overview that highlights the most critical areas for improvement.
+
+Show Previews: Provide previews of how the page appears on Google (SERP snippet) and social media platforms (Open Graph/Twitter Card).
+
+3. Target Users
+Website Owners & Marketers: Looking for quick insights into SEO performance.
+
+SEO Professionals: Experts conducting audits for clients or verifying on-page optimization.
+
+Developers & Webmasters: Technical stakeholders who need in-depth details on HTML structure, code cleanliness, and performance factors.
+
+4. Core Features & Functional Requirements
+4.1 URL Input & Data Fetching
+Requirement: Users can enter a URL into a search box.
+
+Function:
+
+Validate the URL format.
+
+Fetch the webpage’s HTML source code.
+
+Handle potential errors (e.g., 404, non-existent domain, restricted robots.txt).
+
+4.2 SEO Elements Extraction & Analysis
+Requirement: The system parses the HTML to identify and evaluate 20 key elements, each individually scored from 1 to 100 and weighted by its importance level. These elements include:
+
+Title Tag (Weight 10/10)
+
+Checks length (50–60 characters), uniqueness, and keyword usage.
+
+Meta Description (Weight 8/10)
+
+Checks 150–160 characters, uniqueness, and keyword inclusion.
+
+H1 Tag & Heading Hierarchy (Weight 9/10)
+
+Ensures exactly one <h1> and logical use of <h2>, <h3>, etc.
+
+Keyword Usage & Content Relevance (Weight 9/10)
+
+Analyzes keyword distribution and natural integration.
+
+URL Structure (Weight 8/10)
+
+Checks for short, descriptive URLs with relevant keywords.
+
+Canonical Tag (Weight 8/10)
+
+Verifies correct <link rel="canonical"> usage if duplicates exist.
+
+Meta Robots Tag & Indexation (Weight 7/10)
+
+Ensures appropriate index/follow directives; checks robots.txt.
+
+Image Optimization: Alt Text & File Names (Weight 7/10)
+
+Looks for alt attributes, descriptive file names, and compressed files.
+
+Structured Data & Schema Markup (Weight 8/10)
+
+Validates JSON-LD or Microdata for rich snippets.
+
+Internal Linking Structure (Weight 7/10)
+
+Evaluates anchor text relevance and link equity distribution.
+
+External Linking (Weight 5/10)
+
+Checks credibility of outbound links; correct use of rel attributes.
+
+Open Graph & Social Meta Tags (Weight 6/10)
+
+Verifies presence of og:title, og:description, og:image, etc.
+
+Language & Hreflang Attributes (Weight 5/10)
+
+Ensures <html lang="..."> is correct; checks multi-language hreflang tags.
+
+Mobile-Friendliness (Weight 9/10)
+
+Detects responsive design, avoids intrusive pop-ups, checks viewport meta.
+
+Page Speed Factors (Weight 9/10)
+
+Assesses image compression, CSS/JS minification, server response time, etc.
+
+Security & HTTPS (Weight 8/10)
+
+Confirms SSL certificate usage, checks for mixed content.
+
+HTML Validation & Code Cleanliness (Weight 4/10)
+
+Identifies missing tags, duplicate IDs, invalid nesting, etc.
+
+Robots.txt & XML Sitemap (Weight 6/10)
+
+Checks for correct disallow rules, presence of up-to-date sitemap(s).
+
+404 & Redirect Handling (Weight 5/10)
+
+Verifies custom 404 page and proper 301/302 redirects.
+
+Favicon & Branding Elements (Weight 3/10)
+
+Checks for valid favicon link and consistent branding.
+
+4.3 Scoring Mechanism
+Requirement:
+
+Individual Element Score (1–100): The system assigns a numerical score for each of the 20 checks.
+
+Weighted Contribution: Each element’s individual score is multiplied by its weight (e.g., Title Tag at 10/10 has more impact than Favicon at 3/10).
+
+Aggregate Score (0–100): The weighted scores are averaged to form the final overall SEO score.
+
+Color-Coded Indicator:
+
+0–30: Shades of red
+
+31–60: Orange/yellow range
+
+61–80: Light green
+
+81–100: Darker green
