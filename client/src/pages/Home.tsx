@@ -180,6 +180,10 @@ const Home = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Your All-in-One SEO Toolkit</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Comprehensive tools to analyze and optimize every aspect of your website's search engine performance.</p>
+            <div className="mt-4 text-sm text-gray-500 flex items-center justify-center gap-2">
+              <div className="w-2 h-2 bg-primary/40 rounded-full animate-pulse"></div>
+              <span>Running additional checks in background...</span>
+            </div>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
