@@ -5,33 +5,53 @@ const Home = () => {
     <div className="bg-gray-50 min-h-screen pb-16">
       <UrlInput />
       
-      {/* Why Our SEO & Code Analyzer */}
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-800">Why Our SEO & Code Analyzer?</h2>
+      {/* Feature Cards */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Why Our SEO & Code Analyzer?</h2>
+            <p className="text-center text-gray-600 max-w-3xl mx-auto">
+              Tired of juggling multiple tools and complicated reports? Our all-in-one SEO solution delivers a clear, concise 
+              analysis of your site's performance—so you can focus on the strategies that truly matter.
+            </p>
           </div>
-          <p className="text-center text-gray-600 max-w-3xl mx-auto">
-            Tired of juggling multiple tools and complicated reports? Our all-in-one SEO solution delivers a clear, concise 
-            analysis of your site's performance—so you can focus on the strategies that truly matter. From site speed to 
-            metadata, we've got you covered.
-          </p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Instant Insights</h3>
+              <p className="text-gray-600">No wait times. Get a snapshot of your site's health right away.</p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Comprehensive Coverage</h3>
+              <p className="text-gray-600">Technical, on-page, and off-page factors all in a single report.</p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Action-Oriented</h3>
+              <p className="text-gray-600">We don't just highlight issues — we show you exactly how to fix them.</p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">User-Friendly Interface</h3>
+              <p className="text-gray-600">Designed for marketers, developers, and everyone in between.</p>
+            </div>
+          </div>
         </div>
       </section>
       
-      {/* Empower Your Website */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      {/* Process Steps */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-gray-800 mb-1">Empower Your Website in Minutes</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Your Path to Better Rankings</h2>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-4">
-            <div className="border border-gray-200 p-4 bg-white">
-              <h3 className="font-semibold text-gray-800 mb-3">Instant Insights</h3>
-              <p className="text-gray-600 text-sm">
-                No wait times. Get a snapshot of your site's health right away.
-              </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="relative bg-white p-6 rounded-lg shadow-sm text-center">
+              <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4">1</div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Enter Your URL</h3>
+              <p className="text-gray-600">Just paste your website link into our analyzer.</p>
             </div>
             
             <div className="border border-gray-200 p-4 bg-white">
