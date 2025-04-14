@@ -167,69 +167,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Your Path to Better Rankings - Simple Version */}
-      <section 
-        ref={sectionRefs.path} 
-        className="py-12 bg-gray-50 relative z-10"
-      >
-        <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl transition-all duration-1000 ${
-          visibleSections.path ? "opacity-100" : "opacity-0 translate-y-10"
-        }`}>
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-gray-800">Step-by-Step SEO Improvement</h2>
-          </div>
-          
-          <div className="grid md:grid-cols-4 gap-8 relative">
-            {/* Path connector line */}
-            <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gray-200 -z-10">
-              <div className={`h-full bg-primary transition-all duration-1500 ease-in-out`} 
-                style={{ width: visibleSections.path ? '100%' : '0%' }}></div>
-            </div>
-            
-            {[
-              {
-                number: 1,
-                title: "Enter Your URL",
-                description: "Just paste your website link into our analyzer."
-              },
-              {
-                number: 2,
-                title: "Scan & Generate Report",
-                description: "Sit back while we do a deep dive on your site's SEO."
-              },
-              {
-                number: 3,
-                title: "Review Actionable Results",
-                description: "Explore a concise report that highlights weak spots."
-              },
-              {
-                number: 4,
-                title: "Implement & Succeed",
-                description: "Take targeted action to boost your visibility."
-              }
-            ].map((step, index) => (
-              <div 
-                key={index} 
-                className="text-center"
-                style={{ 
-                  animationDelay: `${index * 150}ms`,
-                  opacity: visibleSections.path ? 1 : 0,
-                  transform: visibleSections.path ? "translateY(0)" : "translateY(20px)",
-                  transition: `all 0.5s ease-out ${index * 150}ms`
-                }}
-              >
-                <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
-                  <span className="font-bold">{step.number}</span>
-                </div>
-                <h3 className="font-semibold text-gray-800 mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-600">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
       
       {/* Your All-in-One SEO Toolkit */}
       <section 
