@@ -5,14 +5,12 @@ const Home = () => {
   const [visibleSections, setVisibleSections] = useState<{[key: string]: boolean}>({
     features: false,
     process: false,
-    path: false,
     toolkit: false
   });
 
   const sectionRefs = {
     features: useRef<HTMLDivElement>(null),
     process: useRef<HTMLDivElement>(null),
-    path: useRef<HTMLDivElement>(null),
     toolkit: useRef<HTMLDivElement>(null)
   };
 
@@ -167,7 +165,7 @@ const Home = () => {
         </div>
       </section>
 
-      
+
 
       {/* Your All-in-One SEO Toolkit */}
       <section 
@@ -180,7 +178,7 @@ const Home = () => {
           <div className="text-center mb-12">
             <h2 className="text-2xl font-bold text-gray-800">Your All-in-One SEO Toolkit</h2>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
