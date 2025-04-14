@@ -1,5 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import UrlInput from "@/components/UrlInput";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const Home = () => {
   const [visibleSections, setVisibleSections] = useState<{[key: string]: boolean}>({
@@ -8,21 +16,21 @@ const Home = () => {
     path: false,
     toolkit: false
   });
-  
+
   const sectionRefs = {
     features: useRef<HTMLDivElement>(null),
     process: useRef<HTMLDivElement>(null),
     path: useRef<HTMLDivElement>(null),
     toolkit: useRef<HTMLDivElement>(null)
   };
-  
+
   // Intersection Observer to handle animations when sections come into view
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
-    
+
     Object.entries(sectionRefs).forEach(([key, ref]) => {
       if (!ref.current) return;
-      
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -34,24 +42,37 @@ const Home = () => {
         },
         { threshold: 0.2 }
       );
-      
+
       observer.observe(ref.current);
       observers.push(observer);
     });
-    
+
     return () => {
       observers.forEach(observer => observer.disconnect());
     };
   }, []);
-  
+
+  const [showDialog, setShowDialog] = useState(false);
+  const additionalTools = [
+    {
+      title: "Schema Markup",
+      description: "Analyze your schema markup for correctness and optimization."
+    },
+    {
+      title: "Core Web Vitals",
+      description: "Check your site's performance metrics for a better user experience."
+    },
+    // Add more tools as needed
+  ];
+
   return (
     <div className="bg-gray-50 min-h-screen pb-16 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-40 left-0 w-64 h-64 bg-primary/5 rounded-full filter blur-3xl animate-float-slow"></div>
       <div className="absolute bottom-20 right-0 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl animate-float-medium"></div>
-      
+
       <UrlInput />
-      
+
       {/* Feature Cards */}
       <section 
         ref={sectionRefs.features} 
@@ -67,7 +88,7 @@ const Home = () => {
               analysis of your site's performance—so you can focus on the strategies that truly matter.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
@@ -104,7 +125,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Process Steps */}
       <section 
         ref={sectionRefs.process} 
@@ -116,14 +137,14 @@ const Home = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Your Path to Better Rankings</h2>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
             {/* Process connector line */}
             <div className="hidden lg:block absolute top-1/4 left-0 right-0 h-0.5 bg-gray-200">
               <div className={`h-full bg-primary transition-all duration-1500 ease-in-out`} 
                 style={{ width: visibleSections.process ? '100%' : '0%' }}></div>
             </div>
-            
+
             {[
               {
                 number: 1,
@@ -166,9 +187,9 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
-      
-      
+
+
+
       {/* Your All-in-One SEO Toolkit */}
       <section 
         ref={sectionRefs.toolkit} 
@@ -181,7 +202,7 @@ const Home = () => {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Your All-in-One SEO Toolkit</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Comprehensive tools to analyze and optimize every aspect of your website's search engine performance.</p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -224,7 +245,27 @@ const Home = () => {
                   transition: `all 0.5s ease-out ${index * 100}ms`
                 }}
               >
-                <h3 className="font-semibold text-gray-800 mb-3">{tool.title}</h3>
+                <Dialog open={showDialog} onOpenChange={setShowDialog}>
+                  <DialogTrigger asChild>
+                    <h3 className="font-semibold text-gray-800 mb-3">{tool.title}</h3>
+                  </DialogTrigger>
+                  <DialogContent className="w-96">
+                    <DialogHeader>
+                      <DialogTitle>More Features</DialogTitle>
+                      <DialogDescription>
+                        Additional SEO checks
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid grid-cols-1 gap-4">
+                      {additionalTools.map((addTool, i) => (
+                        <div key={i} className="bg-white p-4 rounded-lg shadow-sm">
+                          <h4 className="font-medium text-gray-800">{addTool.title}</h4>
+                          <p className="text-gray-600">{addTool.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </DialogContent>
+                </Dialog>
                 <p className="text-sm text-gray-600">
                   {tool.description}
                 </p>
@@ -233,7 +274,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Moving particles background effect */}
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
         {[...Array(8)].map((_, index) => (
