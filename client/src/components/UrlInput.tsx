@@ -50,9 +50,6 @@ const UrlInput = () => {
     <section className="bg-white py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">
-            WebSeoScan
-          </h1>
           <p className="text-gray-600 mb-8">
             Analyze your website's SEO performance and get actionable recommendations to
             improve your search engine rankings.
