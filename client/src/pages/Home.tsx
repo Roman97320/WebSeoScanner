@@ -1,13 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import UrlInput from "@/components/UrlInput";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 const Home = () => {
   const [visibleSections, setVisibleSections] = useState<{[key: string]: boolean}>({
@@ -51,19 +43,6 @@ const Home = () => {
       observers.forEach(observer => observer.disconnect());
     };
   }, []);
-
-  const [showDialog, setShowDialog] = useState(false);
-  const additionalTools = [
-    {
-      title: "Schema Markup",
-      description: "Analyze your schema markup for correctness and optimization."
-    },
-    {
-      title: "Core Web Vitals",
-      description: "Check your site's performance metrics for a better user experience."
-    },
-    // Add more tools as needed
-  ];
 
   return (
     <div className="bg-gray-50 min-h-screen pb-16 relative overflow-hidden">
@@ -188,82 +167,112 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Your Path to Better Rankings - Simple Version */}
+      <section 
+        ref={sectionRefs.path} 
+        className="py-12 bg-gray-50 relative z-10"
+      >
+        <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl transition-all duration-1000 ${
+          visibleSections.path ? "opacity-100" : "opacity-0 translate-y-10"
+        }`}>
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-bold text-gray-800">Step-by-Step SEO Improvement</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            {/* Path connector line */}
+            <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gray-200 -z-10">
+              <div className={`h-full bg-primary transition-all duration-1500 ease-in-out`} 
+                style={{ width: visibleSections.path ? '100%' : '0%' }}></div>
+            </div>
+            
+            {[
+              {
+                number: 1,
+                title: "Enter Your URL",
+                description: "Just paste your website link into our analyzer."
+              },
+              {
+                number: 2,
+                title: "Scan & Generate Report",
+                description: "Sit back while we do a deep dive on your site's SEO."
+              },
+              {
+                number: 3,
+                title: "Review Actionable Results",
+                description: "Explore a concise report that highlights weak spots."
+              },
+              {
+                number: 4,
+                title: "Implement & Succeed",
+                description: "Take targeted action to boost your visibility."
+              }
+            ].map((step, index) => (
+              <div 
+                key={index} 
+                className="text-center"
+                style={{ 
+                  animationDelay: `${index * 150}ms`,
+                  opacity: visibleSections.path ? 1 : 0,
+                  transform: visibleSections.path ? "translateY(0)" : "translateY(20px)",
+                  transition: `all 0.5s ease-out ${index * 150}ms`
+                }}
+              >
+                <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
+                  <span className="font-bold">{step.number}</span>
+                </div>
+                <h3 className="font-semibold text-gray-800 mb-2">{step.title}</h3>
+                <p className="text-sm text-gray-600">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-
-      {/* Analysis Features */}
+      {/* Your All-in-One SEO Toolkit */}
       <section 
         ref={sectionRefs.toolkit} 
-        className="py-16 bg-gradient-to-b from-white to-gray-50 relative z-10"
+        className="py-12 bg-white relative z-10"
       >
         <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl transition-all duration-1000 ${
           visibleSections.toolkit ? "opacity-100" : "opacity-0 translate-y-10"
         }`}>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Comprehensive Analysis Features</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Click on each feature to learn more about what we analyze during your website scan.</p>
+            <h2 className="text-2xl font-bold text-gray-800">Your All-in-One SEO Toolkit</h2>
           </div>
-
-          <div className="grid gap-4 max-w-3xl mx-auto">
+          
+          <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                title: "Technical SEO Analysis",
-                icon: "ri-code-line",
-                description: "In-depth scanning of your website's technical foundation including load speed, mobile responsiveness, and SSL security status.",
-                items: ["Page Load Speed", "Mobile Optimization", "SSL Certificate", "Robots.txt", "XML Sitemap"]
+                title: "Metadata Checker",
+                description: "Audit titles, descriptions, and keyword usage for maximum SERP impact."
               },
               {
-                title: "Content & Meta Analysis",
-                icon: "ri-article-line",
-                description: "Comprehensive review of your content structure and meta information for search engine optimization.",
-                items: ["Meta Titles & Descriptions", "Heading Structure", "Keyword Density", "Content Quality", "Image Alt Tags"]
+                title: "Page Speed Optimization",
+                description: "Pinpoint performance bottlenecks and keep visitors (and search engines) happy."
               },
               {
-                title: "User Experience Checks",
-                icon: "ri-user-smile-line",
-                description: "Evaluation of factors that impact visitor engagement and satisfaction.",
-                items: ["Mobile Friendliness", "Navigation Structure", "Page Load Time", "Interactive Elements", "Viewport Configuration"]
+                title: "Mobile-Friendliness",
+                description: "Ensure your website is fully responsive and meets Google's mobile-first criteria."
               },
               {
-                title: "Link Structure Analysis",
-                icon: "ri-links-line",
-                description: "Assessment of internal and external link profile for optimal site structure.",
-                items: ["Internal Links", "External Links", "Broken Links", "Anchor Text", "URL Structure"]
+                title: "Security & SSL Monitoring",
+                description: "Build trust by confirming your site is secure and properly certified."
               },
               {
-                title: "Performance Metrics",
-                icon: "ri-speed-line",
-                description: "Analysis of core web vitals and performance indicators crucial for SEO.",
-                items: ["Core Web Vitals", "Server Response Time", "TTFB", "Resource Optimization", "Caching Status"]
+                title: "Backlink Insights",
+                description: "Track inbound links and discover areas to strengthen your site building strategy."
+              },
+              {
+                title: "Content Optimization",
+                description: "Analyze your content for readability, keyword usage, and engagement potential."
               }
-            ].map((feature, index) => (
-              <Collapsible
-                key={index}
-                className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
-              >
-                <CollapsibleTrigger className="w-full p-4 flex items-center justify-between text-left">
-                  <div className="flex items-center space-x-3">
-                    <i className={`${feature.icon} text-xl text-primary`}></i>
-                    <h3 className="text-lg font-semibold text-gray-800">{feature.title}</h3>
-                  </div>
-                  <i className="ri-arrow-down-s-line text-xl text-gray-400 transition-transform group-data-[state=open]:rotate-180"></i>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="px-4 pb-4">
-                  <p className="text-gray-600 mb-3">{feature.description}</p>
-                  <ul className="grid grid-cols-2 gap-2">
-                    {feature.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-center text-sm text-gray-600">
-                        <i className="ri-checkbox-circle-line text-primary mr-2"></i>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </CollapsibleContent>
-              </Collapsible>
-            ))}
-          </div>
+            ].map((tool, index) => (
               <div 
                 key={index}
-                className={`rounded-xl border ${tool.isMoreCard ? 'border-primary/30 bg-primary/5' : 'border-gray-200 bg-white'} p-6 hover:border-primary hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group`}
+                className="border border-gray-200 p-4 bg-white hover:border-primary hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
                 style={{ 
                   animationDelay: `${index * 100}ms`,
                   opacity: visibleSections.toolkit ? 1 : 0,
@@ -271,27 +280,7 @@ const Home = () => {
                   transition: `all 0.5s ease-out ${index * 100}ms`
                 }}
               >
-                <Dialog open={showDialog} onOpenChange={setShowDialog}>
-                  <DialogTrigger asChild>
-                    <h3 className="font-semibold text-gray-800 mb-3">{tool.title}</h3>
-                  </DialogTrigger>
-                  <DialogContent className="w-96">
-                    <DialogHeader>
-                      <DialogTitle>More Features</DialogTitle>
-                      <DialogDescription>
-                        Additional SEO checks
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="grid grid-cols-1 gap-4">
-                      {additionalTools.map((addTool, i) => (
-                        <div key={i} className="bg-white p-4 rounded-lg shadow-sm">
-                          <h4 className="font-medium text-gray-800">{addTool.title}</h4>
-                          <p className="text-gray-600">{addTool.description}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                <h3 className="font-semibold text-gray-800 mb-3">{tool.title}</h3>
                 <p className="text-sm text-gray-600">
                   {tool.description}
                 </p>
