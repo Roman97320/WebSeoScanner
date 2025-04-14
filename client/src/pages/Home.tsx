@@ -48,31 +48,28 @@ const Home = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="relative bg-white p-6 rounded-lg shadow-sm text-center">
-              <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4">1</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Enter Your URL</h3>
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4 group-hover:scale-105 transition-transform">1</div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Enter Your URL</h3>
               <p className="text-gray-600">Just paste your website link into our analyzer.</p>
             </div>
             
-            <div className="border border-gray-200 p-4 bg-white">
-              <h3 className="font-semibold text-gray-800 mb-3">Comprehensive Coverage</h3>
-              <p className="text-gray-600 text-sm">
-                Technical, on-page, and off-page factors all in a single report.
-              </p>
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4 group-hover:scale-105 transition-transform">2</div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Scan & Generate</h3>
+              <p className="text-gray-600">We'll analyze your site's SEO and code structure.</p>
             </div>
             
-            <div className="border border-gray-200 p-4 bg-white">
-              <h3 className="font-semibold text-gray-800 mb-3">Action-Oriented Recommendations</h3>
-              <p className="text-gray-600 text-sm">
-                We don't just highlight issues — we show you exactly how to fix them.
-              </p>
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4 group-hover:scale-105 transition-transform">3</div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Review Results</h3>
+              <p className="text-gray-600">Get a clear report highlighting key improvements.</p>
             </div>
             
-            <div className="border border-gray-200 p-4 bg-white">
-              <h3 className="font-semibold text-gray-800 mb-3">User-<span className="bg-primary text-white px-1">Friendly</span> Interface</h3>
-              <p className="text-gray-600 text-sm">
-                Designed for marketers, developers, and everyone in between.
-              </p>
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4 group-hover:scale-105 transition-transform">4</div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Take Action</h3>
+              <p className="text-gray-600">Follow our recommendations to boost rankings.</p>
             </div>
           </div>
         </div>
