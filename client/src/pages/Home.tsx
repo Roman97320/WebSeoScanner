@@ -207,11 +207,16 @@ const Home = () => {
               {
                 title: "Content Optimization",
                 description: "Analyze your content for readability, keyword usage, and engagement potential."
+              },
+              {
+                title: "+ More Features",
+                description: "Discover additional checks running in the background, including schema markup, Core Web Vitals, and more.",
+                isMoreCard: true
               }
             ].map((tool, index) => (
               <div 
                 key={index}
-                className="rounded-xl border border-gray-200 p-6 bg-white hover:border-primary hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
+                className={`rounded-xl border ${tool.isMoreCard ? 'border-primary/30 bg-primary/5' : 'border-gray-200 bg-white'} p-6 hover:border-primary hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group`}
                 style={{ 
                   animationDelay: `${index * 100}ms`,
                   opacity: visibleSections.toolkit ? 1 : 0,
