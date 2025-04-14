@@ -1,13 +1,65 @@
+import { useState, useEffect, useRef } from "react";
 import UrlInput from "@/components/UrlInput";
 
 const Home = () => {
+  const [visibleSections, setVisibleSections] = useState<{[key: string]: boolean}>({
+    features: false,
+    process: false,
+    path: false,
+    toolkit: false
+  });
+  
+  const sectionRefs = {
+    features: useRef<HTMLDivElement>(null),
+    process: useRef<HTMLDivElement>(null),
+    path: useRef<HTMLDivElement>(null),
+    toolkit: useRef<HTMLDivElement>(null)
+  };
+  
+  // Intersection Observer to handle animations when sections come into view
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    
+    Object.entries(sectionRefs).forEach(([key, ref]) => {
+      if (!ref.current) return;
+      
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setVisibleSections(prev => ({ ...prev, [key]: true }));
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      
+      observer.observe(ref.current);
+      observers.push(observer);
+    });
+    
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+    };
+  }, []);
+  
   return (
-    <div className="bg-gray-50 min-h-screen pb-16">
+    <div className="bg-gray-50 min-h-screen pb-16 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-40 left-0 w-64 h-64 bg-primary/5 rounded-full filter blur-3xl animate-float-slow"></div>
+      <div className="absolute bottom-20 right-0 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl animate-float-medium"></div>
+      
       <UrlInput />
       
       {/* Feature Cards */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+      <section 
+        ref={sectionRefs.features} 
+        className="py-16 bg-gray-50 relative z-10"
+      >
+        <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl transition-all duration-1000 ${
+          visibleSections.features ? "opacity-100" : "opacity-0 translate-y-10"
+        }`}>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Why Our SEO & Code Analyzer?</h2>
             <p className="text-center text-gray-600 max-w-3xl mx-auto">
@@ -17,167 +69,243 @@ const Home = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Instant Insights</h3>
-              <p className="text-gray-600">No wait times. Get a snapshot of your site's health right away.</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Comprehensive Coverage</h3>
-              <p className="text-gray-600">Technical, on-page, and off-page factors all in a single report.</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Action-Oriented</h3>
-              <p className="text-gray-600">We don't just highlight issues — we show you exactly how to fix them.</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">User-Friendly Interface</h3>
-              <p className="text-gray-600">Designed for marketers, developers, and everyone in between.</p>
-            </div>
+            {[
+              {
+                title: "Instant Insights",
+                description: "No wait times. Get a snapshot of your site's health right away."
+              },
+              {
+                title: "Comprehensive Coverage",
+                description: "Technical, on-page, and off-page factors all in a single report."
+              },
+              {
+                title: "Action-Oriented",
+                description: "We don't just highlight issues — we show you exactly how to fix them."
+              },
+              {
+                title: "User-Friendly Interface",
+                description: "Designed for marketers, developers, and everyone in between."
+              }
+            ].map((feature, index) => (
+              <div 
+                key={index}
+                className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                style={{ 
+                  animationDelay: `${index * 100}ms`,
+                  opacity: visibleSections.features ? 1 : 0,
+                  transform: visibleSections.features ? "translateY(0)" : "translateY(20px)",
+                  transition: `all 0.5s ease-out ${index * 150}ms`
+                }}
+              >
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
       
       {/* Process Steps */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+      <section 
+        ref={sectionRefs.process} 
+        className="py-16 bg-white relative z-10"
+      >
+        <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl transition-all duration-1000 ${
+          visibleSections.process ? "opacity-100" : "opacity-0 translate-y-10"
+        }`}>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Your Path to Better Rankings</h2>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4 group-hover:scale-105 transition-transform">1</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Enter Your URL</h3>
-              <p className="text-gray-600">Just paste your website link into our analyzer.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+            {/* Process connector line */}
+            <div className="hidden lg:block absolute top-1/4 left-0 right-0 h-0.5 bg-gray-200">
+              <div className={`h-full bg-primary transition-all duration-1500 ease-in-out`} 
+                style={{ width: visibleSections.process ? '100%' : '0%' }}></div>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4 group-hover:scale-105 transition-transform">2</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Scan & Generate</h3>
-              <p className="text-gray-600">We'll analyze your site's SEO and code structure.</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4 group-hover:scale-105 transition-transform">3</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Review Results</h3>
-              <p className="text-gray-600">Get a clear report highlighting key improvements.</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4 group-hover:scale-105 transition-transform">4</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Take Action</h3>
-              <p className="text-gray-600">Follow our recommendations to boost rankings.</p>
-            </div>
+            {[
+              {
+                number: 1,
+                title: "Enter Your URL",
+                description: "Just paste your website link into our analyzer."
+              },
+              {
+                number: 2,
+                title: "Scan & Generate",
+                description: "We'll analyze your site's SEO and code structure."
+              },
+              {
+                number: 3,
+                title: "Review Results",
+                description: "Get a clear report highlighting key improvements."
+              },
+              {
+                number: 4,
+                title: "Take Action",
+                description: "Follow our recommendations to boost rankings."
+              }
+            ].map((step, index) => (
+              <div 
+                key={index} 
+                className="bg-white p-6 rounded-lg shadow-sm text-center group hover:shadow-md transition-shadow"
+                style={{ 
+                  animationDelay: `${index * 200}ms`,
+                  opacity: visibleSections.process ? 1 : 0,
+                  transform: visibleSections.process ? "translateY(0)" : "translateY(20px)",
+                  transition: `all 0.5s ease-out ${index * 200}ms`
+                }}
+              >
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-semibold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {step.number}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">{step.title}</h3>
+                <p className="text-gray-600">{step.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
       
-      {/* Your Path to Better Rankings */}
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      {/* Your Path to Better Rankings - Simple Version */}
+      <section 
+        ref={sectionRefs.path} 
+        className="py-12 bg-gray-50 relative z-10"
+      >
+        <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl transition-all duration-1000 ${
+          visibleSections.path ? "opacity-100" : "opacity-0 translate-y-10"
+        }`}>
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-gray-800">Your Path to Better Rankings</h2>
+            <h2 className="text-2xl font-bold text-gray-800">Step-by-Step SEO Improvement</h2>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold">1</span>
-              </div>
-              <h3 className="font-semibold text-gray-800 mb-2">Enter Your URL</h3>
-              <p className="text-sm text-gray-600">
-                Just paste your website link into our analyzer.
-              </p>
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            {/* Path connector line */}
+            <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gray-200 -z-10">
+              <div className={`h-full bg-primary transition-all duration-1500 ease-in-out`} 
+                style={{ width: visibleSections.path ? '100%' : '0%' }}></div>
             </div>
             
-            <div className="text-center">
-              <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold">2</span>
+            {[
+              {
+                number: 1,
+                title: "Enter Your URL",
+                description: "Just paste your website link into our analyzer."
+              },
+              {
+                number: 2,
+                title: "Scan & Generate Report",
+                description: "Sit back while we do a deep dive on your site's SEO."
+              },
+              {
+                number: 3,
+                title: "Review Actionable Results",
+                description: "Explore a concise report that highlights weak spots."
+              },
+              {
+                number: 4,
+                title: "Implement & Succeed",
+                description: "Take targeted action to boost your visibility."
+              }
+            ].map((step, index) => (
+              <div 
+                key={index} 
+                className="text-center"
+                style={{ 
+                  animationDelay: `${index * 150}ms`,
+                  opacity: visibleSections.path ? 1 : 0,
+                  transform: visibleSections.path ? "translateY(0)" : "translateY(20px)",
+                  transition: `all 0.5s ease-out ${index * 150}ms`
+                }}
+              >
+                <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
+                  <span className="font-bold">{step.number}</span>
+                </div>
+                <h3 className="font-semibold text-gray-800 mb-2">{step.title}</h3>
+                <p className="text-sm text-gray-600">
+                  {step.description}
+                </p>
               </div>
-              <h3 className="font-semibold text-gray-800 mb-2">Scan & Generate Report</h3>
-              <p className="text-sm text-gray-600">
-                Sit back while we do a deep dive on your site's SEO, code structure, and more.
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold">3</span>
-              </div>
-              <h3 className="font-semibold text-gray-800 mb-2">Review Actionable Results</h3>
-              <p className="text-sm text-gray-600">
-                Explore a concise, easy-to-read report that highlights any weak spots.
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="font-bold">4</span>
-              </div>
-              <h3 className="font-semibold text-gray-800 mb-2">Implement & Succeed</h3>
-              <p className="text-sm text-gray-600">
-                Take targeted action to boost your visibility and track improvements over time.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
       
       {/* Your All-in-One SEO Toolkit */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      <section 
+        ref={sectionRefs.toolkit} 
+        className="py-12 bg-white relative z-10"
+      >
+        <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl transition-all duration-1000 ${
+          visibleSections.toolkit ? "opacity-100" : "opacity-0 translate-y-10"
+        }`}>
           <div className="text-center mb-12">
             <h2 className="text-2xl font-bold text-gray-800">Your All-in-One SEO Toolkit</h2>
           </div>
           
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="border border-gray-200 p-4 bg-white">
-              <h3 className="font-semibold text-gray-800 mb-3">Metadata Checker</h3>
-              <p className="text-sm text-gray-600">
-                Audit titles, descriptions, and keyword usage for maximum SERP impact.
-              </p>
-            </div>
-            
-            <div className="border border-gray-200 p-4 bg-white">
-              <h3 className="font-semibold text-gray-800 mb-3">Page Speed Optimization</h3>
-              <p className="text-sm text-gray-600">
-                Pinpoint performance bottlenecks and keep visitors (and search engines) happy.
-              </p>
-            </div>
-            
-            <div className="border border-gray-200 p-4 bg-white">
-              <h3 className="font-semibold text-gray-800 mb-3">Mobile-Friendliness</h3>
-              <p className="text-sm text-gray-600">
-                Ensure your website is fully responsive and meets Google's mobile-first criteria.
-              </p>
-            </div>
-            
-            <div className="border border-gray-200 p-4 bg-white">
-              <h3 className="font-semibold text-gray-800 mb-3">Security & SSL Monitoring</h3>
-              <p className="text-sm text-gray-600">
-                Build trust by confirming your site is secure and properly certified.
-              </p>
-            </div>
-            
-            <div className="border border-gray-200 p-4 bg-white">
-              <h3 className="font-semibold text-gray-800 mb-3">Backlink Insights</h3>
-              <p className="text-sm text-gray-600">
-                Track inbound links and discover areas to strengthen your site building strategy.
-              </p>
-            </div>
-            
-            <div className="border border-gray-200 p-4 bg-white">
-              <h3 className="font-semibold text-gray-800 mb-3">Content Optimization</h3>
-              <p className="text-sm text-gray-600">
-                Analyze your content for readability, keyword usage, and engagement potential.
-              </p>
-            </div>
+            {[
+              {
+                title: "Metadata Checker",
+                description: "Audit titles, descriptions, and keyword usage for maximum SERP impact."
+              },
+              {
+                title: "Page Speed Optimization",
+                description: "Pinpoint performance bottlenecks and keep visitors (and search engines) happy."
+              },
+              {
+                title: "Mobile-Friendliness",
+                description: "Ensure your website is fully responsive and meets Google's mobile-first criteria."
+              },
+              {
+                title: "Security & SSL Monitoring",
+                description: "Build trust by confirming your site is secure and properly certified."
+              },
+              {
+                title: "Backlink Insights",
+                description: "Track inbound links and discover areas to strengthen your site building strategy."
+              },
+              {
+                title: "Content Optimization",
+                description: "Analyze your content for readability, keyword usage, and engagement potential."
+              }
+            ].map((tool, index) => (
+              <div 
+                key={index}
+                className="border border-gray-200 p-4 bg-white hover:border-primary hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                style={{ 
+                  animationDelay: `${index * 100}ms`,
+                  opacity: visibleSections.toolkit ? 1 : 0,
+                  transform: visibleSections.toolkit ? "translateY(0)" : "translateY(20px)",
+                  transition: `all 0.5s ease-out ${index * 100}ms`
+                }}
+              >
+                <h3 className="font-semibold text-gray-800 mb-3">{tool.title}</h3>
+                <p className="text-sm text-gray-600">
+                  {tool.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+      
+      {/* Moving particles background effect */}
+      <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
+        {[...Array(8)].map((_, index) => (
+          <div 
+            key={index}
+            className="absolute rounded-full bg-primary/5"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              width: `${20 + Math.random() * 40}px`,
+              height: `${20 + Math.random() * 40}px`,
+              animation: `float-slow ${6 + Math.random() * 5}s linear infinite`
+            }}
+          ></div>
+        ))}
+      </div>
     </div>
   );
 };
