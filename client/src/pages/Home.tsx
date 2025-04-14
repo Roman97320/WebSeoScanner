@@ -172,16 +172,17 @@ const Home = () => {
       {/* Your All-in-One SEO Toolkit */}
       <section 
         ref={sectionRefs.toolkit} 
-        className="py-12 bg-white relative z-10"
+        className="py-16 bg-gradient-to-b from-white to-gray-50 relative z-10"
       >
         <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl transition-all duration-1000 ${
           visibleSections.toolkit ? "opacity-100" : "opacity-0 translate-y-10"
         }`}>
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-gray-800">Your All-in-One SEO Toolkit</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Your All-in-One SEO Toolkit</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Comprehensive tools to analyze and optimize every aspect of your website's search engine performance.</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 title: "Metadata Checker",
@@ -210,7 +211,7 @@ const Home = () => {
             ].map((tool, index) => (
               <div 
                 key={index}
-                className="border border-gray-200 p-4 bg-white hover:border-primary hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                className="rounded-xl border border-gray-200 p-6 bg-white hover:border-primary hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
                 style={{ 
                   animationDelay: `${index * 100}ms`,
                   opacity: visibleSections.toolkit ? 1 : 0,
