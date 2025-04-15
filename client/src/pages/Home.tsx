@@ -176,72 +176,135 @@ const Home = () => {
         <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl transition-all duration-1000 ${
           visibleSections.toolkit ? "opacity-100" : "opacity-0 translate-y-10"
         }`}>
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-gray-800">Your All-in-One SEO Toolkit</h2>
+            <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+              Our analyzer checks all 20 critical SEO elements to give you a comprehensive overview of your website's performance.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className={`grid md:grid-cols-3 ${visibleSections.showAllTools ? 'lg:grid-cols-4' : ''} gap-6`}>
             {[
+              // High Priority Elements
               {
-                title: "Metadata Checker",
-                description: "Audit titles, descriptions, and keyword usage for maximum SERP impact."
+                title: "1. Title Tag",
+                description: "Analysis of length, keyword placement, and uniqueness across your site.",
+                priority: "high"
               },
               {
-                title: "Page Speed Optimization",
-                description: "Pinpoint performance bottlenecks and keep visitors (and search engines) happy."
+                title: "2. Meta Description",
+                description: "Evaluation of compelling descriptions that drive clicks from search results.",
+                priority: "high"
               },
               {
-                title: "Mobile-Friendliness",
-                description: "Ensure your website is fully responsive and meets Google's mobile-first criteria."
+                title: "3. H1 & Heading Structure",
+                description: "Checking hierarchy and proper organization of content sections.",
+                priority: "high"
               },
               {
-                title: "Security & SSL Monitoring",
-                description: "Build trust by confirming your site is secure and properly certified."
+                title: "4. Keyword Usage",
+                description: "Identification of optimal keyword placement, density, and relevance.",
+                priority: "high"
               },
               {
-                title: "Backlink Insights",
-                description: "Track inbound links and discover areas to strengthen your site building strategy."
+                title: "5. URL Structure",
+                description: "Examination of URL clarity, length, and keyword inclusion.",
+                priority: "high"
               },
               {
-                title: "Content Optimization",
-                description: "Analyze your content for readability, keyword usage, and engagement potential."
+                title: "6. Canonical Tags",
+                description: "Validation of proper implementation to avoid duplicate content issues.",
+                priority: "high"
+              },
+              
+              // Technical Elements
+              {
+                title: "7. Meta Robots & Indexing",
+                description: "Verification of correct indexing directives for search engines.",
+                priority: "medium"
               },
               {
-                title: "URL Structure",
-                description: "Analyze URL format and structure for SEO best practices and readability."
+                title: "8. Image Optimization",
+                description: "Audit of alt text, file names, and compression for accessibility.",
+                priority: "medium"
               },
               {
-                title: "Canonical Tags",
-                description: "Check proper implementation of canonical tags to prevent duplicate content."
+                title: "9. Structured Data",
+                description: "Checking schema markup for rich results and enhanced SERP features.",
+                priority: "medium"
               },
               {
-                title: "Open Graph Tags",
-                description: "Verify social media sharing tags for optimal appearance on platforms."
+                title: "10. Internal Linking",
+                description: "Evaluation of site link structure and content relationship signals.",
+                priority: "medium"
               },
               {
-                title: "Image Optimization",
-                description: "Check image alt text, file names, and compression for better performance."
+                title: "11. External Linking",
+                description: "Analysis of outbound links to authoritative sources.",
+                priority: "medium"
               },
               {
-                title: "Heading Structure",
-                description: "Analyze H1-H6 tag hierarchy and content organization."
+                title: "12. Open Graph & Social",
+                description: "Validation of social meta tags for optimal sharing appearance.",
+                priority: "medium"
+              },
+              
+              // Additional Elements
+              {
+                title: "13. Language Attributes",
+                description: "Verification of proper language declarations and hreflang tags.",
+                priority: "low"
               },
               {
-                title: "Schema Markup",
-                description: "Validate structured data implementation for rich search results."
+                title: "14. Mobile-Friendliness",
+                description: "Testing responsive design on various screen sizes.",
+                priority: "low"
+              },
+              {
+                title: "15. Page Speed",
+                description: "Identification of performance issues affecting Core Web Vitals.",
+                priority: "low"
+              },
+              {
+                title: "16. Security & HTTPS",
+                description: "Verification of secure connections and SSL implementation.",
+                priority: "low"
+              },
+              {
+                title: "17. HTML Validation",
+                description: "Checking code cleanliness for better rendering and crawling.",
+                priority: "low"
+              },
+              {
+                title: "18. Robots.txt & Sitemap",
+                description: "Review of crawl directives and proper sitemap configuration.",
+                priority: "low"
+              },
+              {
+                title: "19. 404 & Redirects",
+                description: "Identification of broken links and proper redirection setup.",
+                priority: "low"
+              },
+              {
+                title: "20. Favicon & Branding",
+                description: "Checking for consistent brand elements across the site.",
+                priority: "low"
               }
             ].slice(0, visibleSections.showAllTools ? undefined : 6).map((tool, index) => (
               <div 
                 key={index}
-                className="border border-gray-200 p-4 bg-white hover:border-primary hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                className={`border border-gray-200 p-4 bg-white hover:border-primary hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 ${
+                  tool.priority === 'high' ? 'border-l-4 border-l-primary' : 
+                  tool.priority === 'medium' ? 'border-l-4 border-l-warning' : ''
+                }`}
                 style={{ 
-                  animationDelay: `${index * 100}ms`,
+                  animationDelay: `${index * 50}ms`,
                   opacity: visibleSections.toolkit ? 1 : 0,
                   transform: visibleSections.toolkit ? "translateY(0)" : "translateY(20px)",
-                  transition: `all 0.5s ease-out ${index * 100}ms`
+                  transition: `all 0.5s ease-out ${index * 50}ms`
                 }}
               >
-                <h3 className="font-semibold text-gray-800 mb-3">{tool.title}</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">{tool.title}</h3>
                 <p className="text-sm text-gray-600">
                   {tool.description}
                 </p>
@@ -261,7 +324,7 @@ const Home = () => {
                 </>
               ) : (
                 <>
-                  See All SEO Checks
+                  See All 20 SEO Checks
                   <i className="ri-arrow-down-line ml-2"></i>
                 </>
               )}
