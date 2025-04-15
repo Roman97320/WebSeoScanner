@@ -3,7 +3,7 @@ import { AnalysisResult } from "@/types";
 import ScoreChart from "./ScoreChart";
 import ExecutiveSummary from "./ExecutiveSummary";
 import SeoElementItem from "./SeoElementItem";
-import PreviewCards from "./PreviewCards";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -153,13 +153,7 @@ const AnalysisReport = ({ result, isLoading }: AnalysisReportProps) => {
                   <i className="ri-code-s-slash-line mr-2 text-lg"></i>
                   Technical
                 </TabsTrigger>
-                <TabsTrigger 
-                  value="preview" 
-                  className="py-3 px-4 text-sm font-medium data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=inactive]:bg-transparent flex items-center"
-                >
-                  <i className="ri-eye-line mr-2 text-lg"></i>
-                  Preview
-                </TabsTrigger>
+                
               </TabsList>
             </div>
             
@@ -261,10 +255,7 @@ const AnalysisReport = ({ result, isLoading }: AnalysisReportProps) => {
               </div>
             </TabsContent>
             
-            <TabsContent value="preview" className="p-8">
-              <PreviewCards serp={result.serp} social={result.social} />
-              
-              <div className="mt-10 p-5 card shadow-sm">
+            <div className="mt-10 p-5 card shadow-sm">
                 <h3 className="text-lg font-semibold mb-3">Why These Previews Matter</h3>
                 <p className="text-gray-600">
                   The way your page appears in search results and social shares can drastically impact click-through rates. 
