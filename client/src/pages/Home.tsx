@@ -222,7 +222,7 @@ const Home = () => {
                 description: "Validation of proper implementation to avoid duplicate content issues.",
                 priority: "high"
               },
-              
+
               // Technical Elements
               {
                 title: "7. Meta Robots & Indexing",
@@ -254,7 +254,7 @@ const Home = () => {
                 description: "Validation of social meta tags for optimal sharing appearance.",
                 priority: "medium"
               },
-              
+
               // Additional Elements
               {
                 title: "13. Language Attributes",
@@ -310,10 +310,15 @@ const Home = () => {
                   transition: `all 0.5s ease-out ${index * 50}ms`
                 }}
               >
-                <h3 className="font-semibold text-gray-800 mb-2">{tool.title}</h3>
-                <p className="text-sm text-gray-600">
-                  {tool.description}
-                </p>
+                <div className="flex items-start gap-3 mb-3">
+                  <span className="flex-shrink-0 text-sm font-medium text-primary/70 bg-primary/5 px-2 py-1 rounded">
+                    {tool.title.split('.')[0]}.
+                  </span>
+                  <h3 className="text-lg font-semibold text-gray-800 leading-tight">
+                    {tool.title.split('.')[1]}
+                  </h3>
+                </div>
+                <p className="text-gray-600 leading-relaxed text-[15px]">{tool.description}</p>
               </div>
             ))}
           </div>
