@@ -5,7 +5,8 @@ const Home = () => {
   const [visibleSections, setVisibleSections] = useState<{[key: string]: boolean}>({
     features: false,
     process: false,
-    toolkit: false
+    toolkit: false,
+    showAllTools: false
   });
 
   const sectionRefs = {
@@ -204,8 +205,32 @@ const Home = () => {
               {
                 title: "Content Optimization",
                 description: "Analyze your content for readability, keyword usage, and engagement potential."
+              },
+              {
+                title: "URL Structure",
+                description: "Analyze URL format and structure for SEO best practices and readability."
+              },
+              {
+                title: "Canonical Tags",
+                description: "Check proper implementation of canonical tags to prevent duplicate content."
+              },
+              {
+                title: "Open Graph Tags",
+                description: "Verify social media sharing tags for optimal appearance on platforms."
+              },
+              {
+                title: "Image Optimization",
+                description: "Check image alt text, file names, and compression for better performance."
+              },
+              {
+                title: "Heading Structure",
+                description: "Analyze H1-H6 tag hierarchy and content organization."
+              },
+              {
+                title: "Schema Markup",
+                description: "Validate structured data implementation for rich search results."
               }
-            ].map((tool, index) => (
+            ].slice(0, visibleSections.showAllTools ? undefined : 6).map((tool, index) => (
               <div 
                 key={index}
                 className="border border-gray-200 p-4 bg-white hover:border-primary hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
@@ -227,10 +252,19 @@ const Home = () => {
           <div className="text-center mt-8">
             <button 
               className="inline-flex items-center px-6 py-3 border border-primary/20 rounded-lg text-primary hover:bg-primary/5 transition-colors duration-300"
-              onClick={() => window.location.href = '/report'}
+              onClick={() => setVisibleSections(prev => ({ ...prev, showAllTools: !prev.showAllTools }))}
             >
-              See All SEO Checks
-              <i className="ri-arrow-right-line ml-2"></i>
+              {visibleSections.showAllTools ? (
+                <>
+                  Show Less
+                  <i className="ri-arrow-up-line ml-2"></i>
+                </>
+              ) : (
+                <>
+                  See All SEO Checks
+                  <i className="ri-arrow-down-line ml-2"></i>
+                </>
+              )}
             </button>
           </div>
         </div>
