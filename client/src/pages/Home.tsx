@@ -299,7 +299,7 @@ const Home = () => {
             ].slice(0, visibleSections.showAllTools ? undefined : 6).map((tool, index) => (
               <div 
                 key={index}
-                className={`border border-gray-200 p-4 bg-white hover:border-primary hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 ${
+                className={`border border-gray-200 p-4 bg-white hover:border-primary hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 rounded-lg ${
                   tool.priority === 'high' ? 'border-l-4 border-l-primary' : 
                   tool.priority === 'medium' ? 'border-l-4 border-l-warning' : ''
                 }`}
