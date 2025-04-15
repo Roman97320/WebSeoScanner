@@ -3,7 +3,6 @@ import { AnalysisResult } from "@/types";
 import ScoreChart from "./ScoreChart";
 import ExecutiveSummary from "./ExecutiveSummary";
 import SeoElementItem from "./SeoElementItem";
-import PreviewCards from "./PreviewCards";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -200,8 +199,7 @@ const AnalysisReport = ({ result, isLoading }: AnalysisReportProps) => {
                 )}
               </div>
               
-              {/* SERP Preview */}
-              <PreviewCards serp={result.serp} social={result.social} />
+              {/* No Previews */}
             </TabsContent>
             
             <TabsContent value="seo" className="p-8">
@@ -267,35 +265,6 @@ const AnalysisReport = ({ result, isLoading }: AnalysisReportProps) => {
               </div>
             </TabsContent>
           </Tabs>
-        </div>
-        
-        {/* Preview Section */}
-        <div className="mt-10 p-5 card shadow-sm">
-          <h3 className="text-lg font-semibold mb-3">Why These Previews Matter</h3>
-          <p className="text-gray-600">
-            The way your page appears in search results and social shares can drastically impact click-through rates. 
-            Well-crafted titles and descriptions not only help with SEO but also encourage users to visit your site.
-          </p>
-          <div className="mt-4 grid md:grid-cols-2 gap-6">
-            <div className="flex items-start">
-              <div className="bg-primary/10 rounded-full p-2 mr-3 text-primary">
-                <i className="ri-search-eye-line text-lg"></i>
-              </div>
-              <div>
-                <h4 className="font-medium text-sm mb-1">Search Results Preview</h4>
-                <p className="text-sm text-gray-600">Show how your page appears in Google search results.</p>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <div className="bg-primary/10 rounded-full p-2 mr-3 text-primary">
-                <i className="ri-share-forward-line text-lg"></i>
-              </div>
-              <div>
-                <h4 className="font-medium text-sm mb-1">Social Media Preview</h4>
-                <p className="text-sm text-gray-600">See how your content appears when shared on social platforms.</p>
-              </div>
-            </div>
-          </div>
         </div>
         
         {/* Action Button */}
