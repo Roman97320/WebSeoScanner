@@ -3,6 +3,7 @@ import { AnalysisResult } from "@/types";
 import ScoreChart from "./ScoreChart";
 import ExecutiveSummary from "./ExecutiveSummary";
 import SeoElementItem from "./SeoElementItem";
+import PreviewCards from "./PreviewCards";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -37,6 +38,18 @@ const AnalysisReport = ({ result, isLoading }: AnalysisReportProps) => {
         element.status === 'warning' || 
         (element.status === 'success' && index < 6)
       );
+
+  if (isLoading) {
+    return (
+      <div className="py-12">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center">
+            <div className="animate-pulse">Loading analysis results...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="py-12 bg-background">
@@ -129,9 +142,9 @@ const AnalysisReport = ({ result, isLoading }: AnalysisReportProps) => {
 
         {/* Main Report Tabs */}
         <div className="card shadow-md overflow-hidden">
-          <Tabs defaultValue="summary">
+          <Tabs defaultValue="summary" className="w-full">
             <div className="bg-background/50 px-4 pt-2 border-b border-border">
-              <TabsList className="grid grid-cols-4 md:w-auto md:inline-flex h-auto bg-transparent gap-2">
+              <TabsList className="grid grid-cols-3 md:w-auto md:inline-flex h-auto bg-transparent gap-2">
                 <TabsTrigger 
                   value="summary" 
                   className="py-3 px-4 text-sm font-medium data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=inactive]:bg-transparent flex items-center"
@@ -153,7 +166,6 @@ const AnalysisReport = ({ result, isLoading }: AnalysisReportProps) => {
                   <i className="ri-code-s-slash-line mr-2 text-lg"></i>
                   Technical
                 </TabsTrigger>
-                
               </TabsList>
             </div>
             
@@ -254,36 +266,36 @@ const AnalysisReport = ({ result, isLoading }: AnalysisReportProps) => {
                 </div>
               </div>
             </TabsContent>
-            
-            <div className="mt-10 p-5 card shadow-sm">
-                <h3 className="text-lg font-semibold mb-3">Why These Previews Matter</h3>
-                <p className="text-gray-600">
-                  The way your page appears in search results and social shares can drastically impact click-through rates. 
-                  Well-crafted titles and descriptions not only help with SEO but also encourage users to visit your site.
-                </p>
-                <div className="mt-4 grid md:grid-cols-2 gap-6">
-                  <div className="flex items-start">
-                    <div className="bg-primary/10 rounded-full p-2 mr-3 text-primary">
-                      <i className="ri-search-eye-line text-lg"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-sm mb-1">Search Results Preview</h4>
-                      <p className="text-sm text-gray-600">Show how your page appears in Google search results.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="bg-primary/10 rounded-full p-2 mr-3 text-primary">
-                      <i className="ri-share-forward-line text-lg"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-sm mb-1">Social Media Preview</h4>
-                      <p className="text-sm text-gray-600">See how your content appears when shared on social platforms.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </TabsContent>
           </Tabs>
+        </div>
+        
+        {/* Preview Section */}
+        <div className="mt-10 p-5 card shadow-sm">
+          <h3 className="text-lg font-semibold mb-3">Why These Previews Matter</h3>
+          <p className="text-gray-600">
+            The way your page appears in search results and social shares can drastically impact click-through rates. 
+            Well-crafted titles and descriptions not only help with SEO but also encourage users to visit your site.
+          </p>
+          <div className="mt-4 grid md:grid-cols-2 gap-6">
+            <div className="flex items-start">
+              <div className="bg-primary/10 rounded-full p-2 mr-3 text-primary">
+                <i className="ri-search-eye-line text-lg"></i>
+              </div>
+              <div>
+                <h4 className="font-medium text-sm mb-1">Search Results Preview</h4>
+                <p className="text-sm text-gray-600">Show how your page appears in Google search results.</p>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <div className="bg-primary/10 rounded-full p-2 mr-3 text-primary">
+                <i className="ri-share-forward-line text-lg"></i>
+              </div>
+              <div>
+                <h4 className="font-medium text-sm mb-1">Social Media Preview</h4>
+                <p className="text-sm text-gray-600">See how your content appears when shared on social platforms.</p>
+              </div>
+            </div>
+          </div>
         </div>
         
         {/* Action Button */}
