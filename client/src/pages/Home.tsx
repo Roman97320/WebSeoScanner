@@ -223,6 +223,16 @@ const Home = () => {
               </div>
             ))}
           </div>
+
+          <div className="text-center mt-8">
+            <button 
+              className="inline-flex items-center px-6 py-3 border border-primary/20 rounded-lg text-primary hover:bg-primary/5 transition-colors duration-300"
+              onClick={() => window.location.href = '/report'}
+            >
+              See All SEO Checks
+              <i className="ri-arrow-right-line ml-2"></i>
+            </button>
+          </div>
         </div>
       </section>
 
