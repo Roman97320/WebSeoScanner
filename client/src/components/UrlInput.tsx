@@ -74,8 +74,8 @@ const UrlInput = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto animate-fade-in">
           <h1 className="text-3xl font-bold text-gray-800 mb-4 animate-slide-down">
-              Uncover actionable insights to boost visibility and drive real growth
-            </h1>
+            Scan, Analyze, Implement
+          </h1>
           <p className="text-gray-600 mb-8 animate-slide-up">
             Analyze your website's SEO performance and get actionable recommendations to
             improve your search engine rankings.
