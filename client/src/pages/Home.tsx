@@ -59,12 +59,18 @@ const Home = () => {
         <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl transition-all duration-1000 ${
           visibleSections.features ? "opacity-100" : "opacity-0 translate-y-10"
         }`}>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Why Our SEO & Code Analyzer?</h2>
-            <p className="text-center text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-12 relative">
+            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+              <i className="ri-search-line text-2xl text-primary"></i>
+            </div>
+            <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 mb-4 pt-12">
+              Why Our SEO & Code Analyzer?
+            </h2>
+            <p className="text-center text-gray-600 max-w-2xl mx-auto leading-relaxed text-lg">
               Tired of juggling multiple tools and complicated reports? Our all-in-one SEO solution delivers a clear, concise 
               analysis of your site's performance—so you can focus on the strategies that truly matter.
             </p>
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20 rounded-full"></div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
