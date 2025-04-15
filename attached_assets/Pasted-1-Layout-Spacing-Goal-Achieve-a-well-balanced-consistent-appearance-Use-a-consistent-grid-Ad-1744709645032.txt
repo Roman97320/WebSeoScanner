@@ -1,0 +1,51 @@
+1. Layout & Spacing
+Goal: Achieve a well-balanced, consistent appearance.
+
+Use a consistent grid: Adopt a spacing system (e.g., multiples of 8px) so margins, padding, and spacing between elements feel aligned and intentional.
+
+Group related items: If these “boxes” relate to a common set of actions or concepts (like an SEO checklist), consider grouping them in sections or cards that share a distinct container style.
+
+2. Visual Hierarchy
+Goal: Make the most important information stand out immediately.
+
+Prominent headings: The card title (“5. URL Structure”) is a key piece of information. Use a larger, bolder font for it.
+
+Subtitle or descriptive text: Keep the short explanation in a secondary text style (smaller, lighter, or slightly muted color) to reinforce hierarchy.
+
+Clear numbering or ordering: If the sequence (5, 6, 7, etc.) is crucial, ensure it’s visually separated (maybe in a small badge or subtle accent color) so it’s easy to scan.
+
+3. Color & Contrast
+Goal: Maintain accessibility standards and use color effectively.
+
+Use minimal background colors:
+
+Instead of heavy blocks of color, consider a lighter background or a subtle accent.
+
+Reserve bolder colors for hover states or important statuses.
+
+High contrast for text: Ensure text meets WCAG 2.1 contrast ratios (at least 4.5:1 for normal text). If you are using light backgrounds, the text should be dark enough to be easily readable.
+
+Consistent color palette: Stick to a defined color palette (brand primary, secondary, neutral grays). This unifies the design across all cards.
+
+4. Typography
+Goal: Improve readability and create a refined, professional feel.
+
+Minimal font families: Stick to one or two typefaces (header + body).
+
+Use weights and sizes to create depth: Titles could be semi-bold or bold, descriptive text regular weight, and possibly a different color for subtlety.
+
+Line height & letter spacing: Ensure sufficient line height (1.4–1.6) for body text for easier reading.
+
+5. Card/Box Shape & Style
+Goal: Give each box a clean, modern “card” aesthetic.
+
+Soft corners: Apply a subtle border-radius (e.g., 4px–8px) to each card. Too large can feel cartoonish; too small can feel outdated.
+
+Shadows or borders:
+
+A minimal shadow (slight blur, low opacity) can give depth.
+
+Alternatively, a 1px border in a neutral gray can outline each card if a shadow doesn’t align with your brand style.
+
+Hover / focus states: On hover, slightly elevate the card with a smoother box-shadow or shift. This adds interactivity and depth.
+
